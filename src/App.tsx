@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useTypedSelector } from "./hooks";
+import { useDispatch } from "react-redux";
+import { getCompanies } from "./store/companies/companiesSlice";
+import type { Company } from "./types";
 
 function App() {
+  const dispatch = useDispatch();
+  const companies = useTypedSelector((state) => state.companies.value);
+
+  useEffect(() => {
+    dispatch(getCompanies());
+  }, [dispatch])
+
+  console.log("companies", companies.length);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button onClick={() => dispatch(getCompanies())}>getir</button>
+      <div>
+        {companies &&
+          companies.length &&
+          companies.map((company: Company) => (
+            <div key={company.account}>{company.slug}</div>
+          ))}
+      </div>
+    </>
   );
 }
 
