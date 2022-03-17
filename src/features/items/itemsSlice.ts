@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { Item } from "../../types";
+import type { Item } from "./items.types";
 
 export interface ItemState {
   value: Item[];
@@ -13,12 +13,12 @@ const items = createSlice({
   name: "items",
   initialState,
   reducers: {
-    getItems: () => {},
-    setItems: (state, action: PayloadAction<Item[]>) => {
+    fetchItemsByPage: (state, action) => {},
+    setItemsByPage: (state, action: PayloadAction<Item[]>) => {
       state.value = [...action.payload]
     },
   },
 });
 
-export const { getItems, setItems } = items.actions;
+export const { fetchItemsByPage, setItemsByPage } = items.actions;
 export default items.reducer;

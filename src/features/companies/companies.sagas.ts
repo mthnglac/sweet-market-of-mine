@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import { getCompanies, setCompanies } from "./companiesSlice";
-import { fetchCompaniesService } from "../../service";
+import { fetchCompaniesService } from "./companies.services";
 
 function* fetchData() {
   try {

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { Item } from "../../types";
+import type { Cart } from "./cart.types";
 
 export interface CartState {
-  value: Item[];
+  value: Cart;
 }
 
 const initialState: CartState = {
@@ -14,7 +14,7 @@ const cart = createSlice({
   initialState,
   reducers: {
     getItems: () => {},
-    setItems: (state, action: PayloadAction<Item[]>) => {
+    setItems: (state, action: PayloadAction<Cart>) => {
       state.value = [...action.payload]
     },
   },
