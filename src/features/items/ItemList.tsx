@@ -16,13 +16,14 @@ function ItemList() {
   }, [dispatch, page, sorting, ordering]);
   console.log(items)
 
-  const handleIncrement = () => setPage((page) => page + 1)
-  const handleDecrement = () => {
+  const handleIncrementPage = () => setPage((page) => page + 1)
+  const handleDecrementPage = () => {
     if (page > 1) {
       setPage((page) => page -1)
     }
   }
   const handleSortingPriceLowToHigh = () => {
+    setPage(1)
     setSorting("price")
     setOrdering("asc")
   }
@@ -60,8 +61,8 @@ function ItemList() {
 
       <div style={{display: 'flex', alignItems: 'center'}}>
         <h2>Pagination</h2>
-        <button onClick={handleDecrement}>prev page</button>
-        <button onClick={handleIncrement}>next page</button>
+        <button onClick={handleDecrementPage}>prev page</button>
+        <button onClick={handleIncrementPage}>next page</button>
       </div>
     </>
   );
