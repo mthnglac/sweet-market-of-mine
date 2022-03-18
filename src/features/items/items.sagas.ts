@@ -1,18 +1,23 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { call, put, takeLatest } from "redux-saga/effects";
+import { AxiosResponse } from "axios";
+import { fork, call, put, takeLatest } from "redux-saga/effects";
 import { fetchItemsByPage, setItemsByPage } from "./itemsSlice";
-import { fetchItemsService } from "./items.services";
+import { fetchItemsByPageService } from "./items.services";
+import type { Item } from "./items.types";
 
-function* fetchData(action: PayloadAction<number>) {
+function* onLoadItemsAsync(action: PayloadAction<number>) {
   try {
-    const { data } = yield call(fetchItemsService, action.payload);
+    const page = action.payload
+    const { data }: AxiosResponse<Item[]> = yield call(fetchItemsByPageService, page);
 
-    yield put(setItemsByPage(data));
+    yield put(setItemsByPage(data))
   } catch (e) {
     console.log(e);
   }
 }
 
-export default function* watcherSagaItems() {
-  yield takeLatest(fetchItemsByPage.type, fetchData);
+function* onLoadItems() {
+  yield takeLatest(fetchItemsByPage.type, onLoadItemsAsync);
 }
+
+export const itemsSagas = [fork(onLoadItems)]

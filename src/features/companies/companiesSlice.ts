@@ -13,7 +13,7 @@ const companies = createSlice({
   name: "companies",
   initialState,
   reducers: {
-    getCompanies: () => {},
+    getCompanies: (state, action) => {},
     setCompanies: (state, action: PayloadAction<Company[]>) => {
       state.value = [...action.payload];
     },

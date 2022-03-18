@@ -1,10 +1,12 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { AxiosResponse } from "axios";
+import { fork, call, put, takeLatest } from "redux-saga/effects";
 import { getCompanies, setCompanies } from "./companiesSlice";
 import { fetchCompaniesService } from "./companies.services";
+import type { Company } from './companies.types'
 
-function* fetchData() {
+function* onLoadCompaniesAsync() {
   try {
-    const { data } = yield call(fetchCompaniesService);
+    const { data }: AxiosResponse<Company[]> = yield call(fetchCompaniesService);
 
     yield put(setCompanies(data));
   } catch (e) {
@@ -12,6 +14,8 @@ function* fetchData() {
   }
 }
 
-export default function* watcherSagaCompanies() {
-  yield takeLatest(getCompanies.type, fetchData);
+function* onLoadCompanies() {
+  yield takeLatest(getCompanies.type, onLoadCompaniesAsync);
 }
+
+export const companiesSagas = [fork(onLoadCompanies)]

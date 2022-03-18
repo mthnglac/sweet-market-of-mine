@@ -1,10 +1,10 @@
-import { all, call } from 'redux-saga/effects'
-import companiesSaga from '../features/companies/companies.sagas'
-import itemsSaga from '../features/items/items.sagas'
+import { all } from 'redux-saga/effects'
+import { companiesSagas } from '../features/companies/companies.sagas'
+import { itemsSagas } from '../features/items/items.sagas'
 
 export default function* rootSaga() {
   yield all([
-    call(companiesSaga),
-    call(itemsSaga),
+    ...companiesSagas,
+    ...itemsSagas,
   ])
 }
