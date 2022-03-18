@@ -5,10 +5,16 @@ import { fetchItemsByPage, setItemsByPage } from "./itemsSlice";
 import { fetchItemsByPageService } from "./items.services";
 import type { Item } from "./items.types";
 
-function* onLoadItemsAsync(action: PayloadAction<number>) {
+type ItemPayload = {
+  page: number,
+  sorting: string,
+  ordering: string,
+}
+
+function* onLoadItemsAsync(action: PayloadAction<ItemPayload>) {
   try {
-    const page = action.payload
-    const { data }: AxiosResponse<Item[]> = yield call(fetchItemsByPageService, page);
+    const { page, sorting, ordering } = action.payload
+    const { data }: AxiosResponse<Item[]> = yield call(fetchItemsByPageService, page, sorting, ordering);
 
     yield put(setItemsByPage(data))
   } catch (e) {
