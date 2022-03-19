@@ -40,7 +40,7 @@ export function Brands({ items, selections }: BrandsProps) {
             }}
           ></input>
           <p style={{ margin: 0 }}>
-            All<span>{manufacturers.length}</span>
+            All <span>{manufacturers.length}</span>
           </p>
         </div>
         {Object.entries(manufacturersByUsageCount).map(

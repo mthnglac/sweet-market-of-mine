@@ -11,11 +11,10 @@ import { fetchItemsService } from "../services/items.services";
 
 function* onLoadAllItemsAsync(action: any) {
   try {
-    const { data, headers } = yield call(fetchItemsService, action.payload);
-    const totalItemCount = headers["x-total-count"];
+    const { data } = yield call(fetchItemsService, action.payload);
 
     yield put(setAllItems(data));
-    yield put(setAllItemsCount(totalItemCount));
+    yield put(setAllItemsCount(data.length));
   } catch (e) {
     console.log(e);
   }

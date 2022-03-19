@@ -39,7 +39,7 @@ export function ItemsPage() {
       <Sorting />
       <Brands items={allItems} selections={brandSelections} />
       <Pagination />
-      <Tags items={filteredItems} selections={tagSelections} />
+      <Tags items={allItems} selections={tagSelections} />
     </div>
   );
 }

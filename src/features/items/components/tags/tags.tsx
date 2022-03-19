@@ -41,7 +41,7 @@ export function Tags({ items, selections }: TagsProps) {
             }}
           ></input>
           <p style={{ margin: 0 }}>
-            All<span>{flattedTags.length}</span>
+            All <span>{flattedTags.length}</span>
           </p>
         </div>
         {Object.entries(tagsByUsageCount).map(([tag, usage]) => (
