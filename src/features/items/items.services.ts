@@ -3,7 +3,7 @@ import type { Item } from "./items.types";
 
 const LIMIT = 16;
 
-export async function fetchItemsByPageService(
+export async function fetchItemsService(
   page: number,
   sorting: string,
   ordering: string

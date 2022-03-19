@@ -13,12 +13,12 @@ const items = createSlice({
   name: "items",
   initialState,
   reducers: {
-    fetchItemsByPage: (state, action) => {},
-    setItemsByPage: (state, action: PayloadAction<Item[]>) => {
+    fetchItems: (state, action) => {},
+    setItems: (state, action: PayloadAction<Item[]>) => {
       state.value = [...action.payload]
     },
   },
 });
 
-export const { fetchItemsByPage, setItemsByPage } = items.actions;
+export const { fetchItems, setItems } = items.actions;
 export default items.reducer;
