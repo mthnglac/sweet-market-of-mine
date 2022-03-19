@@ -4,9 +4,14 @@ import { Container } from "./pagination.styles";
 
 export function Pagination() {
   const dispatch = useTypedDispatch();
-  const page = useTypedSelector((state) => state.site.page);
+  const { page, limit } = useTypedSelector((state) => state.site);
+  const filteredValueTotalCount = useTypedSelector((state) => state.items.filteredValueTotalCount);
 
-  const handleIncrementPage = () => dispatch(incrementPage());
+  const handleIncrementPage = () => {
+    if (page < Math.floor(filteredValueTotalCount / limit)) {
+      dispatch(incrementPage());
+    }
+  }
   const handleDecrementPage = () => {
     if (page > 1) {
       dispatch(decrementPage());

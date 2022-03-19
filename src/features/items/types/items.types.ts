@@ -11,7 +11,9 @@ export type Item = {
 
 export type ItemState = {
   allValue: Item[];
+  allValueTotalCount: number;
   filteredValue: Item[];
+  filteredValueTotalCount: number;
 };
 
 export type ItemsFetchPayload = {
@@ -20,4 +22,5 @@ export type ItemsFetchPayload = {
   ordering?: string;
   limit?: number;
   brands?: string[];
+  tags?: string[];
 };

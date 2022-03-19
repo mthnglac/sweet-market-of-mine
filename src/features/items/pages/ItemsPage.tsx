@@ -21,17 +21,7 @@ export function ItemsPage() {
     dispatch(
       getFilteredItems({ page, sorting, ordering, limit, brands, tags })
     );
-  }, [
-    dispatch,
-    page,
-    sorting,
-    ordering,
-    limit,
-    brands,
-    tags,
-    brandSelections,
-    tagSelections,
-  ]);
+  }, [dispatch, page, sorting, ordering, limit, brands, tags, brandSelections, tagSelections]);
 
   useEffect(() => {
     dispatch(getAllItems({}));
