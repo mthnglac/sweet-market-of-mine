@@ -8,3 +8,11 @@ export type Item = {
   manufacturer: string;
   itemType: string;
 };
+
+export type ItemsFetchPayload = {
+  page?: number;
+  sorting?: string;
+  ordering?: string;
+  limit?: number;
+  brands?: string[];
+}

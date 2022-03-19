@@ -1,5 +1,10 @@
-import type { Company } from '../../../companies/types/companies.types'
+import type { Item } from "../../types/items.types";
 
 export type Brands = {
-  selections: Company[]
-}
+  selections: string[];
+};
+
+export type BrandsProps = {
+  items: Item[];
+  selections: string[];
+};

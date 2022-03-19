@@ -6,6 +6,7 @@ const initialState: Site = {
   limit: 16,
   sorting: "price",
   ordering: "asc",
+  brands: [],
 };
 
 const site = createSlice({
@@ -30,6 +31,9 @@ const site = createSlice({
     setOrdering: (state, action: PayloadAction<string>) => {
       state.ordering = action.payload;
     },
+    setBrands: (state, action: PayloadAction<string[]>) => {
+      state.brands = [...action.payload]
+    }
   },
 });
 
@@ -40,5 +44,6 @@ export const {
   setLimit,
   setSorting,
   setOrdering,
+  setBrands,
 } = site.actions;
 export default site.reducer;

@@ -1,14 +1,19 @@
 import axios, { AxiosResponse } from "axios";
-import type { Item } from "../types/items.types";
+import type { Item, ItemsFetchPayload } from "../types/items.types";
 
-const LIMIT = 16;
+const API_URL = "http://localhost:8080/items";
 
-export async function fetchItemsService(
-  page: number,
-  sorting: string,
-  ordering: string
-): Promise<AxiosResponse<Item[]>> {
-  return axios.get<Item[]>(
-    `http://localhost:8080/items?_page=${page}&_sort=${sorting}&_order=${ordering}&_limit=${LIMIT}`
-  );
+export async function fetchItemsService(payload: ItemsFetchPayload): Promise<AxiosResponse<Item[]>> {
+  const { page, sorting, ordering, limit, brands } = payload
+  const requestURL = new URL(API_URL)
+
+  if (page) requestURL.searchParams.append("_page", page.toString());
+  if (sorting) requestURL.searchParams.append("_sort", sorting);
+  if (ordering) requestURL.searchParams.append("_ordering", ordering);
+  if (limit) requestURL.searchParams.append("_limit", limit.toString());
+  if (brands && brands.length) {
+    brands.forEach((brand: string) => requestURL.searchParams.append("manufacturer", brand))
+  }
+
+  return axios.get(requestURL.toString())
 }

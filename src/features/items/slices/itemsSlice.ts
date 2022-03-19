@@ -2,26 +2,29 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { Item } from "../types/items.types";
 
 export interface ItemState {
-  value: Item[];
+  allValue: Item[];
+  filteredValue: Item[];
 }
 
 const initialState: ItemState = {
-  value: [],
+  allValue: [],
+  filteredValue: [],
 };
 
 const items = createSlice({
   name: "items",
   initialState,
   reducers: {
-    getItems: (state, action) => {},
-    setItems: (state, action: PayloadAction<Item[]>) => {
-      state.value = [...action.payload];
+    getAllItems: (state, action) => {},
+    getFilteredItems: (state, action) => {},
+    setAllItems: (state, action: PayloadAction<Item[]>) => {
+      state.allValue = [...action.payload];
     },
-    filterItemsBySlug: (state, action: PayloadAction<string>) => {
-      state.value = state.value.filter((item) => item.slug === action.payload)
-    }
+    setFilteredItems: (state, action: PayloadAction<Item[]>) => {
+      state.filteredValue = [...action.payload];
+    },
   },
 });
 
-export const { getItems, setItems, filterItemsBySlug } = items.actions;
+export const { getAllItems, getFilteredItems, setAllItems, setFilteredItems } = items.actions;
 export default items.reducer;
