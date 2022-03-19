@@ -4,4 +4,5 @@ export type SiteState = {
   sorting: string;
   ordering: string;
   brands: string[];
+  tags: string[];
 };

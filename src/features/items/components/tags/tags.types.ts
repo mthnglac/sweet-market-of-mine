@@ -1,10 +1,10 @@
 import type { Item } from "../../types/items.types";
 
-export type BrandsState = {
+export type TagsState = {
   selections: string[];
 };
 
-export type BrandsProps = {
+export type TagsProps = {
   items: Item[];
   selections: string[];
 };

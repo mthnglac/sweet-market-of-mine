@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { BrandsState } from "./brands.types";
+import type { TagsState } from "./tags.types";
 
-const initialState: BrandsState = {
+const initialState: TagsState = {
   selections: [],
 };
 
-const brands = createSlice({
-  name: "brands",
+const tags = createSlice({
+  name: "tags",
   initialState,
   reducers: {
     pushSelection: (state, action: PayloadAction<string>) => {
@@ -19,5 +19,5 @@ const brands = createSlice({
   },
 });
 
-export const { pushSelection, removeSelection, resetSelections } = brands.actions;
-export default brands.reducer;
+export const { pushSelection, removeSelection, resetSelections } = tags.actions;
+export default tags.reducer;
