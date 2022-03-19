@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { Site } from "./site.types";
+import type { Site } from "../types/site.types";
 
 const initialState: Site = {
   page: 1,

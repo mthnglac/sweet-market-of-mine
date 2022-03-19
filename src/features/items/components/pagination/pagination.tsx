@@ -1,8 +1,8 @@
-import { useTypedSelector, useTypedDispatch } from "../../common/hooks";
-import { incrementPage, decrementPage } from "../site/siteSlice";
+import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
+import { incrementPage, decrementPage } from "../../../site/slices/siteSlice";
 import { Container } from "./pagination.styles";
 
-function Pagination() {
+export function Pagination() {
   const dispatch = useTypedDispatch();
   const page = useTypedSelector((state) => state.site.page);
 
@@ -21,5 +21,3 @@ function Pagination() {
     </Container>
   );
 }
-
-export default Pagination;

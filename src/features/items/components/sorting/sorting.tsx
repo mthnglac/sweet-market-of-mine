@@ -1,7 +1,7 @@
-import { useTypedDispatch } from "../../common/hooks";
-import { setPage, setSorting, setOrdering } from "../site/siteSlice";
+import { useTypedDispatch } from "../../../../hooks";
+import { setPage, setSorting, setOrdering } from "../../../site/slices/siteSlice";
 
-function Sorting() {
+export function Sorting() {
   const dispatch = useTypedDispatch();
 
   const handleSortingPriceLowToHigh = () => {
@@ -35,5 +35,3 @@ function Sorting() {
     </div>
   );
 }
-
-export default Sorting;

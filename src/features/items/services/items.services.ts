@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import type { Item } from "./items.types";
+import type { Item } from "../types/items.types";
 
 const LIMIT = 16;
 
