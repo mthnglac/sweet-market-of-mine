@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { Company } from "../types/companies.types";
-
-export interface CompanyState {
-  value: Company[];
-}
+import type { Company, CompanyState } from "../types/companies.types";
 
 const initialState: CompanyState = {
   value: [],

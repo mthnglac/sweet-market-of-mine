@@ -9,10 +9,15 @@ export type Item = {
   itemType: string;
 };
 
+export type ItemState = {
+  allValue: Item[];
+  filteredValue: Item[];
+};
+
 export type ItemsFetchPayload = {
   page?: number;
   sorting?: string;
   ordering?: string;
   limit?: number;
   brands?: string[];
-}
+};

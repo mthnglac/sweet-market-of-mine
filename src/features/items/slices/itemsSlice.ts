@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { Item } from "../types/items.types";
-
-export interface ItemState {
-  allValue: Item[];
-  filteredValue: Item[];
-}
+import type { Item, ItemState } from "../types/items.types";
 
 const initialState: ItemState = {
   allValue: [],

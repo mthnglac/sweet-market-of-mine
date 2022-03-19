@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { Site } from "../types/site.types";
+import type { SiteState } from "../types/site.types";
 
-const initialState: Site = {
+const initialState: SiteState = {
   page: 1,
   limit: 16,
   sorting: "price",

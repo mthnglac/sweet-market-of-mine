@@ -8,3 +8,7 @@ export type Company = {
   account: number;
   contact: string;
 };
+
+export type CompanyState = {
+  value: Company[];
+};
