@@ -5,6 +5,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store'
 import { Provider } from 'react-redux'
+import axios from 'axios'
+
+const sleep = (delay: number) => {
+  return new Promise((resolve) => setTimeout(resolve, delay))
+}
+
+axios.interceptors.request.use(
+  async (config) => {
+    await sleep(3000)
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 ReactDOM.render(
   <React.StrictMode>
