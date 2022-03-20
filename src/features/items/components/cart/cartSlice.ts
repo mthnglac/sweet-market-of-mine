@@ -36,7 +36,7 @@ const cart = createSlice({
     reCalculateCartTotal: (state) => {
       state.total = 0;
       state.items.forEach((cartItem: CartItem) => {
-        state.total += cartItem.item.price * cartItem.count;
+        state.total = parseFloat((state.total + (cartItem.item.price * cartItem.count)).toFixed(2));
       });
     },
   },
