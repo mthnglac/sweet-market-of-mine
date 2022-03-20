@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setBrands } from "../../../site/slices/siteSlice";
 import { useTypedDispatch } from "../../../../hooks";
 import { pushSelection, removeSelection, resetSelections } from "./brandsSlice";
@@ -7,6 +7,7 @@ import type { Item } from "../../types/items.types";
 import _ from "lodash";
 
 export function Brands({ items, selections }: BrandsProps) {
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
@@ -15,6 +16,17 @@ export function Brands({ items, selections }: BrandsProps) {
 
   const manufacturers: string[] = items.map((item: Item) => item.manufacturer);
   const manufacturersByUsageCount = _.countBy(manufacturers);
+
+  const searchBar = () => {
+    return (
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <input
+          placeholder="Search brand"
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+    );
+  };
 
   const handleCheckboxChange = (manufacturer: string) => {
     const foundManufacturer = selections.indexOf(manufacturer);
@@ -43,8 +55,12 @@ export function Brands({ items, selections }: BrandsProps) {
             All <span>{manufacturers.length}</span>
           </p>
         </div>
-        {Object.entries(manufacturersByUsageCount).map(
-          ([manufacturer, usage]) => (
+        {Object.entries(manufacturersByUsageCount)
+          .filter(
+            ([manufacturer, usage]: [manufacturer: string, usage: number]) =>
+              manufacturer.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+          .map(([manufacturer, usage]) => (
             <div
               key={manufacturer}
               style={{ display: "flex", alignItems: "center" }}
@@ -58,11 +74,15 @@ export function Brands({ items, selections }: BrandsProps) {
                 {manufacturer} <span>{usage}</span>
               </p>
             </div>
-          )
-        )}
+          ))}
       </div>
     );
   };
 
-  return <div>{checkboxItems()}</div>;
+  return (
+    <div>
+      {searchBar()}
+      {checkboxItems()}
+    </div>
+  );
 }

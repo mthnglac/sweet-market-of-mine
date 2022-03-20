@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setTags } from "../../../site/slices/siteSlice";
 import { useTypedDispatch } from "../../../../hooks";
 import { pushSelection, removeSelection, resetSelections } from "./tagsSlice";
@@ -7,6 +7,7 @@ import type { Item } from "../../types/items.types";
 import _ from "lodash";
 
 export function Tags({ items, selections }: TagsProps) {
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
@@ -16,6 +17,17 @@ export function Tags({ items, selections }: TagsProps) {
   const tags: string[][] = items.map((item: Item) => item.tags);
   const flattedTags = tags.flat();
   const tagsByUsageCount = _.countBy(flattedTags);
+
+  const searchBar = () => {
+    return (
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <input
+          placeholder="Search brand"
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
+    );
+  };
 
   const handleCheckboxChange = (tag: string) => {
     const foundTag = selections.indexOf(tag);
@@ -44,21 +56,30 @@ export function Tags({ items, selections }: TagsProps) {
             All <span>{flattedTags.length}</span>
           </p>
         </div>
-        {Object.entries(tagsByUsageCount).map(([tag, usage]) => (
-          <div key={tag} style={{ display: "flex", alignItems: "center" }}>
-            <input
-              type="checkbox"
-              checked={selections.includes(tag)}
-              onChange={() => handleCheckboxChange(tag)}
-            ></input>
-            <p style={{ margin: 0 }}>
-              {tag} <span>{usage}</span>
-            </p>
-          </div>
-        ))}
+        {Object.entries(tagsByUsageCount)
+          .filter(([tag, usage]: [tag: string, usage: number]) =>
+            tag.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+          .map(([tag, usage]) => (
+            <div key={tag} style={{ display: "flex", alignItems: "center" }}>
+              <input
+                type="checkbox"
+                checked={selections.includes(tag)}
+                onChange={() => handleCheckboxChange(tag)}
+              ></input>
+              <p style={{ margin: 0 }}>
+                {tag} <span>{usage}</span>
+              </p>
+            </div>
+          ))}
       </div>
     );
   };
 
-  return <div>{checkboxItems()}</div>;
+  return (
+    <div>
+      {searchBar()}
+      {checkboxItems()}
+    </div>
+  );
 }
