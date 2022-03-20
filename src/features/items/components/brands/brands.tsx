@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { setBrands } from "../../../site/slices/siteSlice";
-import { useTypedDispatch } from "../../../../hooks";
+import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
 import { pushSelection, removeSelection, resetSelections } from "./brandsSlice";
-import type { BrandsProps } from "./brands.types";
 import type { Item } from "../../types/items.types";
 import _ from "lodash";
 
-export function Brands({ items, selections }: BrandsProps) {
+export function Brands() {
+  const selections = useTypedSelector((state) => state.brands.selections);
+  const items = useTypedSelector((state) => state.items.allValue);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const dispatch = useTypedDispatch();
 

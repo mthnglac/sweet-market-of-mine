@@ -9,9 +9,7 @@ import { ItemTypeToggle } from "../components/item-type-toggle/item-type-toggle"
 import { Pagination } from "../components/pagination/pagination";
 
 export function ItemsPage() {
-  const filteredItems = useTypedSelector((state) => state.items.filteredValue);
   const itemTypeToggle = useTypedSelector((state) => state.items.typeToggle);
-  const allItems = useTypedSelector((state) => state.items.allValue);
   const brandSelections = useTypedSelector((state) => state.brands.selections);
   const tagSelections = useTypedSelector((state) => state.tags.selections);
   const { page, sorting, ordering, limit, brands, tags } = useTypedSelector(
@@ -42,11 +40,11 @@ export function ItemsPage() {
 
   return (
     <div>
-      <ItemList items={filteredItems} />
+      <ItemList />
       <ItemTypeToggle />
       <Sorting />
-      <Brands items={allItems} selections={brandSelections} />
-      <Tags items={allItems} selections={tagSelections} />
+      <Brands />
+      <Tags />
       <Pagination />
     </div>
   );

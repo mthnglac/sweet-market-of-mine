@@ -1,10 +1,9 @@
+import { useTypedSelector } from "../../../../hooks";
 import type { Item } from "../../types/items.types";
 
-type ItemListProps = {
-  items: Item[];
-};
+export function ItemList() {
+  const items = useTypedSelector((state) => state.items.filteredValue);
 
-export function ItemList({ items }: ItemListProps) {
   return (
     <div>
       {items &&

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { setTags } from "../../../site/slices/siteSlice";
-import { useTypedDispatch } from "../../../../hooks";
+import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
 import { pushSelection, removeSelection, resetSelections } from "./tagsSlice";
-import type { TagsProps } from "./tags.types";
 import type { Item } from "../../types/items.types";
 import _ from "lodash";
 
-export function Tags({ items, selections }: TagsProps) {
+export function Tags() {
+  const items = useTypedSelector((state) => state.items.allValue);
+  const selections = useTypedSelector((state) => state.tags.selections);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const dispatch = useTypedDispatch();
 
