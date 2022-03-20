@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useTypedSelector, useTypedDispatch } from "../../../hooks";
 import { getAllItems, getFilteredItems } from "../slices/itemsSlice";
-import type { Item } from "../types/items.types";
 import { Sorting } from "../components/sorting/sorting";
 import { Brands } from "../components/brands/brands";
 import { Tags } from "../components/tags/tags";
+import { ItemList } from "../components/item-list/item-list";
+import { ItemTypeToggle } from "../components/item-type-toggle/item-type-toggle";
 import { Pagination } from "../components/pagination/pagination";
 
 export function ItemsPage() {
@@ -21,7 +22,17 @@ export function ItemsPage() {
     dispatch(
       getFilteredItems({ page, sorting, ordering, limit, brands, tags })
     );
-  }, [dispatch, page, sorting, ordering, limit, brands, tags, brandSelections, tagSelections]);
+  }, [
+    dispatch,
+    page,
+    sorting,
+    ordering,
+    limit,
+    brands,
+    tags,
+    brandSelections,
+    tagSelections,
+  ]);
 
   useEffect(() => {
     dispatch(getAllItems({}));
@@ -29,17 +40,12 @@ export function ItemsPage() {
 
   return (
     <div>
-      <div>
-        {filteredItems &&
-          filteredItems.length &&
-          filteredItems.map((item: Item) => (
-            <div key={item.added}>{item.name}</div>
-          ))}
-      </div>
+      <ItemList items={filteredItems} />
+      <ItemTypeToggle />
       <Sorting />
       <Brands items={allItems} selections={brandSelections} />
-      <Pagination />
       <Tags items={allItems} selections={tagSelections} />
+      <Pagination />
     </div>
   );
 }
