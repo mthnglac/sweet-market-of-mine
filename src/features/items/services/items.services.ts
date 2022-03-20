@@ -9,7 +9,7 @@ export async function fetchItemsService(payload: ItemsFetchPayload): Promise<Axi
 
   if (page) requestURL.searchParams.append("_page", page.toString());
   if (sorting) requestURL.searchParams.append("_sort", sorting);
-  if (ordering) requestURL.searchParams.append("_ordering", ordering);
+  if (ordering) requestURL.searchParams.append("_order", ordering);
   if (limit) requestURL.searchParams.append("_limit", limit.toString());
   if (brands && brands.length) {
     brands.forEach((brand: string) => requestURL.searchParams.append("manufacturer", brand))
