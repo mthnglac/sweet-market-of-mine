@@ -10,6 +10,7 @@ import { Pagination } from "../components/pagination/pagination";
 
 export function ItemsPage() {
   const filteredItems = useTypedSelector((state) => state.items.filteredValue);
+  const itemTypeToggle = useTypedSelector((state) => state.items.typeToggle);
   const allItems = useTypedSelector((state) => state.items.allValue);
   const brandSelections = useTypedSelector((state) => state.brands.selections);
   const tagSelections = useTypedSelector((state) => state.tags.selections);
@@ -20,7 +21,7 @@ export function ItemsPage() {
 
   useEffect(() => {
     dispatch(
-      getFilteredItems({ page, sorting, ordering, limit, brands, tags })
+      getFilteredItems({ page, sorting, ordering, limit, brands, tags, itemTypeToggle })
     );
   }, [
     dispatch,
@@ -30,6 +31,7 @@ export function ItemsPage() {
     limit,
     brands,
     tags,
+    itemTypeToggle,
     brandSelections,
     tagSelections,
   ]);

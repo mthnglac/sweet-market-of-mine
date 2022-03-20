@@ -6,6 +6,7 @@ const initialState: ItemState = {
   allValueTotalCount: 0,
   filteredValue: [],
   filteredValueTotalCount: 0,
+  typeToggle: "mug",
 };
 
 const items = createSlice({
@@ -26,6 +27,9 @@ const items = createSlice({
     setFilteredItemsCount: (state, action: PayloadAction<number>) => {
       state.filteredValueTotalCount = action.payload;
     },
+    setItemTypeToggle: (state, action: PayloadAction<"mug" | "shirt">) => {
+      state.typeToggle = action.payload;
+    },
   },
 });
 
@@ -36,5 +40,6 @@ export const {
   setAllItemsCount,
   setFilteredItems,
   setFilteredItemsCount,
+  setItemTypeToggle,
 } = items.actions;
 export default items.reducer;

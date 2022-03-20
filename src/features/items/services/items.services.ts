@@ -4,7 +4,7 @@ import type { Item, ItemsFetchPayload } from "../types/items.types";
 const API_URL = "http://localhost:8080/items";
 
 export async function fetchItemsService(payload: ItemsFetchPayload): Promise<AxiosResponse<Item[]>> {
-  const { page, sorting, ordering, limit, brands, tags } = payload
+  const { page, sorting, ordering, limit, brands, tags, itemTypeToggle } = payload
   const requestURL = new URL(API_URL)
 
   if (page) requestURL.searchParams.append("_page", page.toString());
@@ -17,6 +17,7 @@ export async function fetchItemsService(payload: ItemsFetchPayload): Promise<Axi
   if (tags && tags.length) {
     tags.forEach((tag: string) => requestURL.searchParams.append("tags_like", tag))
   }
+  if (itemTypeToggle) requestURL.searchParams.append("itemType", itemTypeToggle.toString());
 
   return axios.get(requestURL.toString())
 }

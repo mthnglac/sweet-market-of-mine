@@ -14,6 +14,7 @@ export type ItemState = {
   allValueTotalCount: number;
   filteredValue: Item[];
   filteredValueTotalCount: number;
+  typeToggle: "mug" | "shirt";
 };
 
 export type ItemsFetchPayload = {
@@ -23,4 +24,5 @@ export type ItemsFetchPayload = {
   limit?: number;
   brands?: string[];
   tags?: string[];
+  itemTypeToggle?: "mug" | "shirt";
 };
