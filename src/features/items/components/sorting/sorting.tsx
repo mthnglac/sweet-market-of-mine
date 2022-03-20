@@ -1,32 +1,36 @@
 import { useTypedDispatch } from "../../../../hooks";
-import { setPage, setSorting, setOrdering } from "../../../site/slices/siteSlice";
+import {
+  setPage,
+  setSorting,
+  setOrdering,
+} from "../../../site/slices/siteSlice";
 
 export function Sorting() {
   const dispatch = useTypedDispatch();
 
   const handleSortingPriceLowToHigh = () => {
-    dispatch(setPage(1))
-    dispatch(setSorting("price"))
-    dispatch(setOrdering("asc"))
-  }
+    dispatch(setPage(1));
+    dispatch(setSorting("price"));
+    dispatch(setOrdering("asc"));
+  };
   const handleSortingPriceHighToLow = () => {
-    dispatch(setPage(1))
-    dispatch(setSorting("price"))
-    dispatch(setOrdering("desc"))
-  }
+    dispatch(setPage(1));
+    dispatch(setSorting("price"));
+    dispatch(setOrdering("desc"));
+  };
   const handleSortingNewToOld = () => {
-    dispatch(setPage(1))
-    dispatch(setSorting("added"))
-    dispatch(setOrdering("desc"))
-  }
+    dispatch(setPage(1));
+    dispatch(setSorting("added"));
+    dispatch(setOrdering("desc"));
+  };
   const handleSortingOldToNew = () => {
-    dispatch(setPage(1))
-    dispatch(setSorting("added"))
-    dispatch(setOrdering("asc"))
-  }
+    dispatch(setPage(1));
+    dispatch(setSorting("added"));
+    dispatch(setOrdering("asc"));
+  };
 
   return (
-    <div style={{display: 'flex', alignItems: 'center'}}>
+    <div style={{ display: "flex", alignItems: "center" }}>
       <h2>Sorting</h2>
       <button onClick={handleSortingPriceLowToHigh}>Price low to high</button>
       <button onClick={handleSortingPriceHighToLow}>Price high to low</button>

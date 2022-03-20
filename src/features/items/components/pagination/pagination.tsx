@@ -5,13 +5,15 @@ import { Container } from "./pagination.styles";
 export function Pagination() {
   const dispatch = useTypedDispatch();
   const { page, limit } = useTypedSelector((state) => state.site);
-  const filteredValueTotalCount = useTypedSelector((state) => state.items.filteredValueTotalCount);
+  const filteredValueTotalCount = useTypedSelector(
+    (state) => state.items.filteredValueTotalCount
+  );
 
   const handleIncrementPage = () => {
     if (page < Math.floor(filteredValueTotalCount / limit)) {
       dispatch(incrementPage());
     }
-  }
+  };
   const handleDecrementPage = () => {
     if (page > 1) {
       dispatch(decrementPage());

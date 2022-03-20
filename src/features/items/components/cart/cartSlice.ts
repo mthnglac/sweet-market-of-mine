@@ -1,24 +1,52 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { Cart } from "./cart.types";
-
-export interface CartState {
-  value: Cart;
-}
+import type { CartItem, CartState } from "./cart.types";
+import _ from "lodash";
 
 const initialState: CartState = {
-  value: [],
+  items: [],
+  total: 0,
 };
 
 const cart = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    getItems: () => {},
-    setItems: (state, action: PayloadAction<Cart>) => {
-      state.value = [...action.payload];
+    addItemToCart: (state, action: PayloadAction<CartItem>) => {
+      state.items = [...state.items, action.payload];
+    },
+    popItemFromCart: (state, action: PayloadAction<CartItem>) => {
+      _.remove(state.items, (cartItem: CartItem) => {
+        return cartItem.item.name === action.payload.item.name;
+      });
+    },
+    incrementCartItemCount: (state, action: PayloadAction<CartItem>) => {
+      const foundItemIndex = state.items.findIndex(
+        (cartItem: CartItem) => cartItem.item.name === action.payload.item.name
+      );
+
+      state.items[foundItemIndex].count++;
+    },
+    decrementCartItemCount: (state, action: PayloadAction<CartItem>) => {
+      const foundItemIndex = state.items.findIndex(
+        (cartItem: CartItem) => cartItem.item.name === action.payload.item.name
+      );
+
+      state.items[foundItemIndex].count--;
+    },
+    reCalculateCartTotal: (state) => {
+      state.total = 0;
+      state.items.forEach((cartItem: CartItem) => {
+        state.total += cartItem.item.price * cartItem.count;
+      });
     },
   },
 });
 
-export const { getItems, setItems } = cart.actions;
+export const {
+  addItemToCart,
+  popItemFromCart,
+  incrementCartItemCount,
+  decrementCartItemCount,
+  reCalculateCartTotal,
+} = cart.actions;
 export default cart.reducer;

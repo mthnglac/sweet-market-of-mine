@@ -7,6 +7,7 @@ import { Tags } from "../components/tags/tags";
 import { ItemList } from "../components/item-list/item-list";
 import { ItemTypeToggle } from "../components/item-type-toggle/item-type-toggle";
 import { Pagination } from "../components/pagination/pagination";
+import { Cart } from "../components/cart/cart";
 
 export function ItemsPage() {
   const itemTypeToggle = useTypedSelector((state) => state.items.typeToggle);
@@ -40,6 +41,7 @@ export function ItemsPage() {
 
   return (
     <div>
+      <Cart />
       <ItemList />
       <ItemTypeToggle />
       <Sorting />

@@ -19,5 +19,6 @@ const brands = createSlice({
   },
 });
 
-export const { pushSelection, removeSelection, resetSelections } = brands.actions;
+export const { pushSelection, removeSelection, resetSelections } =
+  brands.actions;
 export default brands.reducer;

@@ -32,10 +32,10 @@ export function Brands() {
   const handleCheckboxChange = (manufacturer: string) => {
     const foundManufacturer = selections.indexOf(manufacturer);
 
-    if (foundManufacturer > -1) {
-      dispatch(removeSelection(foundManufacturer));
-    } else {
+    if (foundManufacturer === -1) {
       dispatch(pushSelection(manufacturer));
+    } else {
+      dispatch(removeSelection(foundManufacturer));
     }
   };
 
@@ -47,7 +47,7 @@ export function Brands() {
             type="checkbox"
             checked={!selections.length}
             onChange={() => {
-              if (!!selections.length) {
+              if (selections.length) {
                 dispatch(resetSelections());
               }
             }}
@@ -61,21 +61,26 @@ export function Brands() {
             ([manufacturer, usage]: [manufacturer: string, usage: number]) =>
               manufacturer.toLowerCase().includes(searchQuery.toLowerCase())
           )
-          .map(([manufacturer, usage]) => (
-            <div
-              key={manufacturer}
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <input
-                type="checkbox"
-                checked={selections.includes(manufacturer)}
-                onChange={() => handleCheckboxChange(manufacturer)}
-              ></input>
-              <p style={{ margin: 0 }}>
-                {manufacturer} <span>{usage}</span>
-              </p>
-            </div>
-          ))}
+          .map(
+            (
+              [manufacturer, usage]: [manufacturer: string, usage: number],
+              index: number
+            ) => (
+              <div
+                key={index}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <input
+                  type="checkbox"
+                  checked={selections.includes(manufacturer)}
+                  onChange={() => handleCheckboxChange(manufacturer)}
+                ></input>
+                <p style={{ margin: 0 }}>
+                  {manufacturer} <span>{usage}</span>
+                </p>
+              </div>
+            )
+          )}
       </div>
     );
   };

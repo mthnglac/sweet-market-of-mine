@@ -33,10 +33,10 @@ export function Tags() {
   const handleCheckboxChange = (tag: string) => {
     const foundTag = selections.indexOf(tag);
 
-    if (foundTag > -1) {
-      dispatch(removeSelection(foundTag));
-    } else {
+    if (foundTag === -1) {
       dispatch(pushSelection(tag));
+    } else {
+      dispatch(removeSelection(foundTag));
     }
   };
 
@@ -48,7 +48,7 @@ export function Tags() {
             type="checkbox"
             checked={!selections.length}
             onChange={() => {
-              if (!!selections.length) {
+              if (selections.length) {
                 dispatch(resetSelections());
               }
             }}
@@ -61,8 +61,8 @@ export function Tags() {
           .filter(([tag, usage]: [tag: string, usage: number]) =>
             tag.toLowerCase().includes(searchQuery.toLowerCase())
           )
-          .map(([tag, usage]) => (
-            <div key={tag} style={{ display: "flex", alignItems: "center" }}>
+          .map(([tag, usage]: [tag: string, usage: number], index: number) => (
+            <div key={index} style={{ display: "flex", alignItems: "center" }}>
               <input
                 type="checkbox"
                 checked={selections.includes(tag)}
