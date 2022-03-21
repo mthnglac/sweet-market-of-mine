@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useTypedSelector, useTypedDispatch } from "../../../hooks";
+import { useTypedSelector, useTypedDispatch } from "../../../common/hooks";
 import { getAllItems, getFilteredItems } from "../slices/itemsSlice";
 import { Sorting } from "../components/sorting/sorting";
 import { Brands } from "../components/brands/brands";

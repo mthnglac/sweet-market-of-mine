@@ -1,9 +1,10 @@
-import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
+import { useTypedSelector, useTypedDispatch } from "../../../../common/hooks";
 import {
   addItemToCart,
   incrementCartItemCount,
   reCalculateCartTotal,
 } from "../cart/cartSlice";
+import { setShowCart } from '../../../site/slices/siteSlice'
 import type { Item } from "../../types/items.types";
 import type { CartItem } from "../cart/cart.types";
 import { Container, ItemContainer } from "./item-list.styles";
@@ -27,6 +28,7 @@ export function ItemList() {
       if (foundCartItemIndex === -1) {
         dispatch(addItemToCart({ item, count }));
         dispatch(reCalculateCartTotal());
+        dispatch(setShowCart(true))
       } else {
         dispatch(incrementCartItemCount(cartItems[foundCartItemIndex]));
         dispatch(reCalculateCartTotal());
@@ -38,8 +40,7 @@ export function ItemList() {
       {itemsLoading ? (
         <Loading />
       ) : (
-        items &&
-        !!items.length &&
+        !!items?.length &&
         items.map((item: Item, index: number) => (
           <ItemContainer key={index}>
             <div className="image">

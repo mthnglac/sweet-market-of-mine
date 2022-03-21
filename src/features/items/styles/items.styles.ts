@@ -20,6 +20,7 @@ const MiddleContainer = styled.div`
 `;
 const RightSideContainer = styled.div`
   display: flex;
+  flex-direction: column;
   margin: 1%;
   flex: 1;
 `;

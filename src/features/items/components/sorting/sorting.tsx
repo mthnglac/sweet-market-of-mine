@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useTypedDispatch } from "../../../../hooks";
+import { useTypedDispatch } from "../../../../common/hooks";
 import {
   setPage,
   setSorting,

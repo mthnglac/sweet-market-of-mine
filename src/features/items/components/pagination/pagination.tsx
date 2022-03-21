@@ -1,4 +1,4 @@
-import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
+import { useTypedSelector, useTypedDispatch } from "../../../../common/hooks";
 import { incrementPage, decrementPage } from "../../../site/slices/siteSlice";
 import { Container } from "./pagination.styles";
 

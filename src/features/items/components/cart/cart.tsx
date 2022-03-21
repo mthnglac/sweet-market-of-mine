@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
+import { useTypedSelector, useTypedDispatch } from "../../../../common/hooks";
 import {
   popItemFromCart,
   incrementCartItemCount,
@@ -7,6 +7,8 @@ import {
   reCalculateCartTotal,
 } from "./cartSlice";
 import type { CartItem } from "./cart.types";
+import { Container } from "./cart.styles";
+import { Card } from "../../../../common/components";
 
 export function Cart() {
   const cartItems = useTypedSelector((state) => state.cart.items);
@@ -29,21 +31,10 @@ export function Cart() {
   };
 
   return (
-    <div style={{ display: "flex", border: "5px solid red" }}>
-      <div>
-        <h2>Cart</h2>
-        <span>{cartTotal}</span>
-      </div>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          border: "1px solid yellow",
-        }}
-      >
+    <Container>
+      <Card>
         <p>Items</p>
-        {cartItems &&
-          !!cartItems.length &&
+        {!!cartItems?.length &&
           cartItems.map((cartItem: CartItem, index: number) => (
             <div key={index}>
               <p>{cartItem.item.name}</p>
@@ -57,7 +48,8 @@ export function Cart() {
               </button>
             </div>
           ))}
-      </div>
-    </div>
+        <span>{cartTotal}</span>
+      </Card>
+    </Container>
   );
 }

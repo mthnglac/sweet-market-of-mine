@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { setTags } from "../../../site/slices/siteSlice";
-import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
+import { useTypedSelector, useTypedDispatch } from "../../../../common/hooks";
 import { pushSelection, removeSelection, resetSelections } from "./tagsSlice";
 import type { Item } from "../../types/items.types";
 import {

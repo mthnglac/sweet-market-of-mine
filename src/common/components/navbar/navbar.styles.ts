@@ -17,6 +17,8 @@ const CartButtonContainer = styled.div`
   right: 5%;
   height: 76px;
   width: 150px;
+  background-color: ${props => props.theme.colors.blueActive};
+  cursor: pointer;
 `;
 
 const CartButton = styled.div`

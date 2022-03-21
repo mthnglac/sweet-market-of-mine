@@ -1,4 +1,4 @@
-import { useTypedDispatch, useTypedSelector } from "../../../../hooks";
+import { useTypedDispatch, useTypedSelector } from "../../../../common/hooks";
 import { setItemTypeToggle } from "../../slices/itemsSlice";
 import { Container, Title } from './item-type-toggle.styles'
 import { Button } from '../../../../common/components'

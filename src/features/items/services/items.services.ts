@@ -11,10 +11,10 @@ export async function fetchItemsService(payload: ItemsFetchPayload): Promise<Axi
   if (sorting) requestURL.searchParams.append("_sort", sorting);
   if (ordering) requestURL.searchParams.append("_order", ordering);
   if (limit) requestURL.searchParams.append("_limit", limit.toString());
-  if (brands && brands.length) {
+  if (brands?.length) {
     brands.forEach((brand: string) => requestURL.searchParams.append("manufacturer", brand))
   }
-  if (tags && tags.length) {
+  if (tags?.length) {
     tags.forEach((tag: string) => requestURL.searchParams.append("tags_like", tag))
   }
   if (itemTypeToggle) requestURL.searchParams.append("itemType", itemTypeToggle.toString());
