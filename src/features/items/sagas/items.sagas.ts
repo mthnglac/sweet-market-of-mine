@@ -6,11 +6,14 @@ import {
   setAllItemsCount,
   setFilteredItems,
   setFilteredItemsCount,
-  setIsLoading,
+  setIsAllLoading,
+  setIsFilteredLoading,
 } from "../slices/itemsSlice";
 import { fetchItemsService } from "../services/items.services";
 
 function* onLoadAllItemsAsync(action: any) {
+  yield put(setIsAllLoading(true))
+
   try {
     const { data } = yield call(fetchItemsService, action.payload);
 
@@ -19,6 +22,8 @@ function* onLoadAllItemsAsync(action: any) {
   } catch (e) {
     console.log(e);
   }
+
+  yield put(setIsAllLoading(false))
 }
 
 function* onLoadAllItems() {
@@ -26,7 +31,7 @@ function* onLoadAllItems() {
 }
 
 function* onLoadFilteredItemsAsync(action: any) {
-  yield put(setIsLoading(true));
+  yield put(setIsFilteredLoading(true));
 
   try {
     const { data, headers } = yield call(fetchItemsService, action.payload);
@@ -38,7 +43,7 @@ function* onLoadFilteredItemsAsync(action: any) {
     console.log(e);
   }
 
-  yield put(setIsLoading(false));
+  yield put(setIsFilteredLoading(false));
 }
 
 function* onLoadFilteredItems() {

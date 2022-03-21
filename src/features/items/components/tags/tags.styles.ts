@@ -4,6 +4,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 24px;
+
+  {${({ tagsLoading }: { tagsLoading: boolean }) => tagsLoading && `
+      height: 300px;
+  `}}
 `;
 const Title = styled.h2`
   font-weight: ${props => props.theme.fontWeights.semiBold};

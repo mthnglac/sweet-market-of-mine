@@ -13,6 +13,7 @@ const LeftSideContainer = styled.div`
 `;
 const MiddleContainer = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   margin: 1%;
   flex: 3;

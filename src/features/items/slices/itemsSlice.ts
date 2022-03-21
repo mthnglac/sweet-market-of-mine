@@ -7,7 +7,8 @@ const initialState: ItemState = {
   filteredValue: [],
   filteredValueTotalCount: 0,
   typeToggle: "mug",
-  isLoading: false,
+  isAllLoading: false,
+  isFilteredLoading: false,
 };
 
 const items = createSlice({
@@ -31,8 +32,11 @@ const items = createSlice({
     setItemTypeToggle: (state, action: PayloadAction<"mug" | "shirt">) => {
       state.typeToggle = action.payload;
     },
-    setIsLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
+    setIsAllLoading: (state, action: PayloadAction<boolean>) => {
+      state.isAllLoading = action.payload;
+    },
+    setIsFilteredLoading: (state, action: PayloadAction<boolean>) => {
+      state.isFilteredLoading = action.payload;
     },
   },
 });
@@ -45,6 +49,7 @@ export const {
   setFilteredItems,
   setFilteredItemsCount,
   setItemTypeToggle,
-  setIsLoading,
+  setIsAllLoading,
+  setIsFilteredLoading,
 } = items.actions;
 export default items.reducer;

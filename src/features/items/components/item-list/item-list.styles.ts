@@ -5,6 +5,10 @@ const Container = styled.div`
   flex-wrap: wrap;
   padding-top: 25px;
   padding-bottom: 25px;
+
+  {${({ itemsLoading }: { itemsLoading: boolean }) => itemsLoading && `
+      height: 1600px;
+  `}}
 `;
 const ItemContainer = styled.div`
   display: flex;

@@ -4,11 +4,17 @@ import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
 import { pushSelection, removeSelection, resetSelections } from "./brandsSlice";
 import type { Item } from "../../types/items.types";
 import _ from "lodash";
-import { Card, CheckBox, SearchBar } from "../../../../common/components";
+import {
+  Card,
+  CheckBox,
+  SearchBar,
+  Loading,
+} from "../../../../common/components";
 import { Container, Title } from "./brands.styles";
 
 export function Brands() {
   const selections = useTypedSelector((state) => state.brands.selections);
+  const allItemsLoading = useTypedSelector((state) => state.items.isAllLoading);
   const items = useTypedSelector((state) => state.items.allValue);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const dispatch = useTypedDispatch();
@@ -32,7 +38,7 @@ export function Brands() {
 
   const checkboxItems = () => {
     return (
-      <div style={{ width: '100%', height: '142px', overflowY: 'scroll' }}>
+      <div style={{ width: "100%", height: "142px", overflowY: "scroll" }}>
         <CheckBox
           label="All"
           helperLabel={manufacturers.length.toString()}
@@ -67,13 +73,20 @@ export function Brands() {
   };
 
   return (
-    <Container>
+    <Container brandsLoading={allItemsLoading}>
       <Title>Brands</Title>
 
-      <Card>
-        <SearchBar placeholder="Search brand" onChange={(e) => setSearchQuery(e.target.value)} />
-        {checkboxItems()}
-      </Card>
+      {allItemsLoading ? (
+        <Loading size={"small"} />
+      ) : (
+        <Card>
+          <SearchBar
+            placeholder="Search brand"
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {checkboxItems()}
+        </Card>
+      )}
     </Container>
   );
 }

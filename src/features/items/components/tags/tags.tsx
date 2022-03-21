@@ -3,12 +3,18 @@ import { setTags } from "../../../site/slices/siteSlice";
 import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
 import { pushSelection, removeSelection, resetSelections } from "./tagsSlice";
 import type { Item } from "../../types/items.types";
-import { Card, CheckBox, SearchBar } from "../../../../common/components";
-import { Container, Title } from "./tags.styles"
+import {
+  Card,
+  CheckBox,
+  SearchBar,
+  Loading,
+} from "../../../../common/components";
+import { Container, Title } from "./tags.styles";
 import _ from "lodash";
 
 export function Tags() {
   const items = useTypedSelector((state) => state.items.allValue);
+  const allItemsLoading = useTypedSelector((state) => state.items.isAllLoading);
   const selections = useTypedSelector((state) => state.tags.selections);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const dispatch = useTypedDispatch();
@@ -33,7 +39,7 @@ export function Tags() {
 
   const checkboxItems = () => {
     return (
-      <div style={{ width: '100%', height: '142px', overflowY: 'scroll' }}>
+      <div style={{ width: "100%", height: "142px", overflowY: "scroll" }}>
         <CheckBox
           label="All"
           helperLabel={flattedTags.length.toString()}
@@ -62,13 +68,20 @@ export function Tags() {
   };
 
   return (
-    <Container>
+    <Container tagsLoading={allItemsLoading}>
       <Title>Tags</Title>
 
-      <Card>
-        <SearchBar placeholder="Search tag" onChange={(e) => setSearchQuery(e.target.value)} />
-        {checkboxItems()}
-      </Card>
+      {allItemsLoading ? (
+        <Loading size={"small"} />
+      ) : (
+        <Card>
+          <SearchBar
+            placeholder="Search tag"
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {checkboxItems()}
+        </Card>
+      )}
     </Container>
   );
 }

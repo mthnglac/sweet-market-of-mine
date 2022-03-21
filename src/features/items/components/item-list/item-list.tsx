@@ -1,12 +1,19 @@
 import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
-import { addItemToCart, incrementCartItemCount, reCalculateCartTotal } from "../cart/cartSlice";
+import {
+  addItemToCart,
+  incrementCartItemCount,
+  reCalculateCartTotal,
+} from "../cart/cartSlice";
 import type { Item } from "../../types/items.types";
 import type { CartItem } from "../cart/cart.types";
 import { Container, ItemContainer } from "./item-list.styles";
-import { Button } from "../../../../common/components";
+import { Button, Loading } from "../../../../common/components";
 
 export function ItemList() {
   const items = useTypedSelector((state) => state.items.filteredValue);
+  const itemsLoading = useTypedSelector(
+    (state) => state.items.isFilteredLoading
+  );
   const cartItems = useTypedSelector((state) => state.cart.items);
   const dispatch = useTypedDispatch();
 
@@ -27,8 +34,11 @@ export function ItemList() {
     };
 
   return (
-    <Container>
-      {items &&
+    <Container itemsLoading={itemsLoading}>
+      {itemsLoading ? (
+        <Loading />
+      ) : (
+        items &&
         !!items.length &&
         items.map((item: Item, index: number) => (
           <ItemContainer key={index}>
@@ -50,7 +60,8 @@ export function ItemList() {
               />
             </div>
           </ItemContainer>
-        ))}
+        ))
+      )}
     </Container>
   );
 }

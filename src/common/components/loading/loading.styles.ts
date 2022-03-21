@@ -15,9 +15,9 @@ const rotation = keyframes`
 `;
 
 const Container = styled.div`
-  position: fixed;
-  left: 0px;
-  top: 0px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
   height: 100%;
   z-index: 9999;
@@ -25,18 +25,30 @@ const Container = styled.div`
 `;
 const Outer = styled.div`
   margin: auto;
-  margin-top: 15%;
+  margin-top: ${({ indicatorSize = "medium" }: { indicatorSize: string }) => {
+    return indicatorSize === "medium" ? "30%" : "20%";
+  }};
   background: ${mainColor};
-  height: 100px;
-  width: 100px;
+  height: ${({ indicatorSize = "medium" }: { indicatorSize: string }) => {
+    return indicatorSize === "medium" ? "100px" : "50px";
+  }};
+  width: ${({ indicatorSize = "medium" }: { indicatorSize: string }) => {
+    return indicatorSize === "medium" ? "100px" : "50px";
+  }};
   border-radius: 15px;
 `;
 const Middle = styled.div`
-  height: 60px;
-  width: 60px;
+  height: ${({ indicatorSize = "medium" }: { indicatorSize: string }) => {
+    return indicatorSize === "medium" ? "60px" : "30px";
+  }};
+  width: ${({ indicatorSize = "medium" }: { indicatorSize: string }) => {
+    return indicatorSize === "medium" ? "60px" : "30px";
+  }};
   margin: auto;
   position: relative;
-  top: 20px;
+  top: ${({ indicatorSize = "medium" }: { indicatorSize: string }) => {
+    return indicatorSize === "medium" ? "20px" : "10px";
+  }};
   border-radius: 50%;
   background-image: linear-gradient(150deg, transparent 50%, ${secondColor} 50%),
     linear-gradient(90deg, ${secondColor} 50%, ${littleCursor} 50%);
@@ -46,11 +58,17 @@ const Middle = styled.div`
 `;
 const Inner = styled.div`
   background: ${mainColor};
-  height: 48px;
-  width: 48px;
+  height: ${({ indicatorSize = "medium" }: { indicatorSize: string }) => {
+    return indicatorSize === "medium" ? "48px" : "24px";
+  }};
+  width: ${({ indicatorSize = "medium" }: { indicatorSize: string }) => {
+    return indicatorSize === "medium" ? "48px" : "24px";
+  }};
   margin: auto;
   position: relative;
-  top: 6px;
+  top: ${({ indicatorSize = "medium" }: { indicatorSize: string }) => {
+    return indicatorSize === "medium" ? "6px" : "3px";
+  }};
   border-radius: 50%;
 `;
 
