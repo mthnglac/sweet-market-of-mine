@@ -2,6 +2,7 @@ import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
 import { addItemToCart, incrementCartItemCount } from "../cart/cartSlice";
 import type { Item } from "../../types/items.types";
 import type { CartItem } from "../cart/cart.types";
+import { Container } from './item-list.styles'
 
 export function ItemList() {
   const items = useTypedSelector((state) => state.items.filteredValue);
@@ -23,7 +24,7 @@ export function ItemList() {
     };
 
   return (
-    <div>
+    <Container>
       {items &&
         !!items.length &&
         items.map((item: Item, index: number) => (
@@ -34,6 +35,6 @@ export function ItemList() {
             </button>
           </div>
         ))}
-    </div>
+    </Container>
   );
 }

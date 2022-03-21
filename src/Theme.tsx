@@ -5,18 +5,18 @@ interface LayoutProps {
   children: ReactNode;
 }
 
-const theme = {
+export const theme = {
   colors: {
     greyscale700: "#191919",
     black100: "#E0E0E0",
     black300: "#A8A8A8",
+    black500: "#6F6F6F",
     black600: "#525252",
     greyscale500: "#697488",
     white: "#FFFFFF",
     whiteSoft: "#E5E5E5",
     blue: "#1EA4CE",
     blueActive: "#147594",
-    grey: "#6F6F6F",
   },
   fonts: ["sans-serif"],
   fontSizes: {
