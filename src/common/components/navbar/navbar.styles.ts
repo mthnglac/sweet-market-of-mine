@@ -1,29 +1,40 @@
 import styled from 'styled-components'
 
-const Header = styled.div`
+const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: ${props => props.theme.colors.blue};
   color: ${props => props.theme.colors.white};
   height: 76px;
-`
+`;
 
-const DivTitle = styled.div`
-  margin-right: auto;
-  padding: 12px 16px;
-  cursor: pointer;
-  vertical-align: middle;
-`
+const CartButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 5%;
+  height: 76px;
+  width: 150px;
+`;
 
-const DivItem = styled.div`
-  padding: 16px 16px;
-  cursor: pointer;
-  vertical-align: middle;
-`
+const CartButton = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-weight: ${(props) => props.theme.fontWeights.semiBold};
+  font-size: ${(props) => props.theme.fontSizes.responsive};
+  color: ${(props) => props.theme.fontSizes.white};
+
+  span {
+    text-align: center;
+    margin-left: 10px;
+  }
+`;
 
 export {
-  Header,
-  DivTitle,
-  DivItem,
+  Container,
+  CartButtonContainer,
+  CartButton,
 }

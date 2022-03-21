@@ -3,7 +3,7 @@ import styled from "styled-components";
 const MainContainer = styled.div`
   display: flex;
   align-items: stretch;
-  margin: 5%;
+  margin: 1% 5%;
 `;
 const LeftSideContainer = styled.div`
   display: flex;

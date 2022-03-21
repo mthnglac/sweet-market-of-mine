@@ -1,5 +1,5 @@
 import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
-import { addItemToCart, incrementCartItemCount } from "../cart/cartSlice";
+import { addItemToCart, incrementCartItemCount, reCalculateCartTotal } from "../cart/cartSlice";
 import type { Item } from "../../types/items.types";
 import type { CartItem } from "../cart/cart.types";
 import { Container, ItemContainer } from "./item-list.styles";
@@ -19,8 +19,10 @@ export function ItemList() {
 
       if (foundCartItemIndex === -1) {
         dispatch(addItemToCart({ item, count }));
+        dispatch(reCalculateCartTotal());
       } else {
         dispatch(incrementCartItemCount(cartItems[foundCartItemIndex]));
+        dispatch(reCalculateCartTotal());
       }
     };
 

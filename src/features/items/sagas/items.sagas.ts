@@ -6,6 +6,7 @@ import {
   setAllItemsCount,
   setFilteredItems,
   setFilteredItemsCount,
+  setIsLoading,
 } from "../slices/itemsSlice";
 import { fetchItemsService } from "../services/items.services";
 
@@ -25,6 +26,8 @@ function* onLoadAllItems() {
 }
 
 function* onLoadFilteredItemsAsync(action: any) {
+  yield put(setIsLoading(true));
+
   try {
     const { data, headers } = yield call(fetchItemsService, action.payload);
     const totalItemCount = headers["x-total-count"];
@@ -34,6 +37,8 @@ function* onLoadFilteredItemsAsync(action: any) {
   } catch (e) {
     console.log(e);
   }
+
+  yield put(setIsLoading(false));
 }
 
 function* onLoadFilteredItems() {

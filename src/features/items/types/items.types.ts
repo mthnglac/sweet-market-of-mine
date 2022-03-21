@@ -15,6 +15,7 @@ export type ItemState = {
   filteredValue: Item[];
   filteredValueTotalCount: number;
   typeToggle: "mug" | "shirt";
+  isLoading: boolean;
 };
 
 export type ItemsFetchPayload = {

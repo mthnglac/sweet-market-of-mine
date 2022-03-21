@@ -6,6 +6,7 @@ import { Brands } from "../components/brands/brands";
 import { Tags } from "../components/tags/tags";
 import { ItemList } from "../components/item-list/item-list";
 import { ItemTypeToggle } from "../components/item-type-toggle/item-type-toggle";
+import { Loading } from "../../../common/components";
 //import { Pagination } from "../components/pagination/pagination";
 import { Cart } from "../components/cart/cart";
 import {
@@ -18,8 +19,10 @@ import {
 
 export function ItemsPage() {
   const itemTypeToggle = useTypedSelector((state) => state.items.typeToggle);
+  const itemsLoading = useTypedSelector((state) => state.items.isLoading);
   const brandSelections = useTypedSelector((state) => state.brands.selections);
   const tagSelections = useTypedSelector((state) => state.tags.selections);
+  const showCart = useTypedSelector((state) => state.site.showCart);
   const { page, sorting, ordering, limit, brands, tags } = useTypedSelector(
     (state) => state.site
   );
@@ -56,6 +59,7 @@ export function ItemsPage() {
 
   return (
     <MainContainer>
+      {itemsLoading && <Loading />}
 
       <LeftSideContainer id="sol">
         <Sorting />
@@ -69,9 +73,7 @@ export function ItemsPage() {
       </MiddleContainer>
 
       <RightSideContainer id="sag">
-        {/*
-        <Cart />
-        */}
+        {showCart && <Cart />}
       </RightSideContainer>
 
       {/*

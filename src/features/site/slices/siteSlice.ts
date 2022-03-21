@@ -8,6 +8,7 @@ const initialState: SiteState = {
   ordering: "asc",
   brands: [],
   tags: [],
+  showCart: false,
 };
 
 const site = createSlice({
@@ -33,11 +34,14 @@ const site = createSlice({
       state.ordering = action.payload;
     },
     setBrands: (state, action: PayloadAction<string[]>) => {
-      state.brands = [...action.payload]
+      state.brands = [...action.payload];
     },
     setTags: (state, action: PayloadAction<string[]>) => {
-      state.tags = [...action.payload]
-    }
+      state.tags = [...action.payload];
+    },
+    setShowCart: (state, action: PayloadAction<boolean>) => {
+      state.showCart = action.payload;
+    },
   },
 });
 
@@ -50,5 +54,6 @@ export const {
   setOrdering,
   setBrands,
   setTags,
+  setShowCart,
 } = site.actions;
 export default site.reducer;
