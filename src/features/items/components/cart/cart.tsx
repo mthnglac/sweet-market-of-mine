@@ -33,22 +33,31 @@ export function Cart() {
   return (
     <Container>
       <Card>
-        <p>Items</p>
         {!!cartItems?.length &&
           cartItems.map((cartItem: CartItem, index: number) => (
-            <div key={index}>
-              <p>{cartItem.item.name}</p>
-              <p>{cartItem.item.price}</p>
-              <button onClick={handleDecrementCartItemCount(cartItem)}>
-                -
-              </button>
-              <span>{cartItem.count}</span>
-              <button onClick={handleIncrementCartItemCount(cartItem)}>
-                +
-              </button>
+            <div className="cart-item" key={index}>
+              <div className="cart-item-details">
+                <p>{cartItem.item.name}</p>
+                <p className="cart-item-price">&#x20BA;{cartItem.item.price}</p>
+              </div>
+              <div className="inc-dec-container">
+                <div
+                  className="decrease-cart-item"
+                  onClick={handleDecrementCartItemCount(cartItem)}
+                >
+                  -
+                </div>
+                <div className="cart-item-count">{cartItem.count}</div>
+                <div
+                  className="increase-cart-item"
+                  onClick={handleIncrementCartItemCount(cartItem)}
+                >
+                  +
+                </div>
+              </div>
             </div>
           ))}
-        <span>{cartTotal}</span>
+        <div className="cart-total">&#x20BA;{cartTotal}</div>
       </Card>
     </Container>
   );

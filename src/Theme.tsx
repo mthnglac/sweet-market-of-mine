@@ -7,6 +7,7 @@ interface LayoutProps {
 
 export const theme = {
   colors: {
+    black50: "#F4F4F4",
     black100: "#E0E0E0",
     black300: "#A8A8A8",
     black500: "#6F6F6F",
