@@ -4,25 +4,13 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const RadioButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 15px;
-  background-color: #fff;
-`
-const RadioButton = styled.div`
-  display: flex;
-  width: 100%;
-`
-const BoldTitle = styled.h3`
-  font-weight: 600;
-  font-size: 13px;
-  color: #
+const Title = styled.h2`
+  font-weight: ${props => props.theme.fontWeights.semiBold};
+  font-size: ${props => props.theme.fontSizes.small};
+  color: ${props => props.theme.colors.greyscale500};
 `
 
 export {
   Container,
-  RadioButtonContainer,
-  RadioButton,
+  Title,
 };

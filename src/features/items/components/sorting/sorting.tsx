@@ -5,8 +5,9 @@ import {
   setSorting,
   setOrdering,
 } from "../../../site/slices/siteSlice";
-import { Container, RadioButtonContainer } from "./sorting.styles"
 import type { SortingType } from "./sorting.types"
+import { Container, Title } from "./sorting.styles"
+import { Card, RadioButton } from '../../../../common/components'
 
 export function Sorting() {
   const dispatch = useTypedDispatch();
@@ -37,25 +38,16 @@ export function Sorting() {
     setSortingType("OTN")
   };
 
-  const RadioButton = ({ label, value, onChange }: any) => {
-    return (
-      <label style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-        <input style={{ margin: 0 }} type="radio" checked={value} onChange={onChange} />
-        <span style={{ marginLeft: "10px" }}>{label}</span>
-      </label>
-    )
-  }
-
   return (
     <Container>
-      <h2>Sorting</h2>
+      <Title>Sorting</Title>
 
-      <RadioButtonContainer>
+      <Card>
         <RadioButton label="Price low to high" value={sortingType === 'PLTH'} onChange={handleSortingPriceLowToHigh} />
         <RadioButton label="Price high to low" value={sortingType === 'PHTL'} onChange={handleSortingPriceHighToLow} />
         <RadioButton label="New to old" value={sortingType === 'NTO'} onChange={handleSortingNewToOld} />
         <RadioButton label="Old to new" value={sortingType === 'OTN'} onChange={handleSortingOldToNew} />
-      </RadioButtonContainer>
+      </Card>
     </Container>
   );
 }

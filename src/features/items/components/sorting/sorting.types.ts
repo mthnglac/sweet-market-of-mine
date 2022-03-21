@@ -1,1 +1,1 @@
-export type SortingType = "PLTH" | "PHTL" | "NTO" | "OTN"
+export type SortingType = "PLTH" | "PHTL" | "NTO" | "OTN";
