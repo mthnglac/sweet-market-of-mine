@@ -3,6 +3,7 @@ import { setTags } from "../../../site/slices/siteSlice";
 import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
 import { pushSelection, removeSelection, resetSelections } from "./tagsSlice";
 import type { Item } from "../../types/items.types";
+import { Container } from "./tags.styles"
 import _ from "lodash";
 
 export function Tags() {
@@ -23,7 +24,7 @@ export function Tags() {
     return (
       <div style={{ display: "flex", alignItems: "center" }}>
         <input
-          placeholder="Search brand"
+          placeholder="Search tag"
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
@@ -42,7 +43,7 @@ export function Tags() {
 
   const checkboxItems = () => {
     return (
-      <div>
+      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'red',}}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <input
             type="checkbox"
@@ -78,9 +79,9 @@ export function Tags() {
   };
 
   return (
-    <div>
+    <Container>
       {searchBar()}
       {checkboxItems()}
-    </div>
+    </Container>
   );
 }

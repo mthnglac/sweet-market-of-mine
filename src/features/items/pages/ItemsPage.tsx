@@ -6,8 +6,15 @@ import { Brands } from "../components/brands/brands";
 import { Tags } from "../components/tags/tags";
 import { ItemList } from "../components/item-list/item-list";
 import { ItemTypeToggle } from "../components/item-type-toggle/item-type-toggle";
-import { Pagination } from "../components/pagination/pagination";
+//import { Pagination } from "../components/pagination/pagination";
 import { Cart } from "../components/cart/cart";
+import {
+  MainContainer,
+  LeftSideContainer,
+  RightSideContainer,
+  MiddleContainer,
+  //BottomContainer,
+} from "../styles/items.styles";
 
 export function ItemsPage() {
   const itemTypeToggle = useTypedSelector((state) => state.items.typeToggle);
@@ -20,7 +27,15 @@ export function ItemsPage() {
 
   useEffect(() => {
     dispatch(
-      getFilteredItems({ page, sorting, ordering, limit, brands, tags, itemTypeToggle })
+      getFilteredItems({
+        page,
+        sorting,
+        ordering,
+        limit,
+        brands,
+        tags,
+        itemTypeToggle,
+      })
     );
   }, [
     dispatch,
@@ -40,14 +55,29 @@ export function ItemsPage() {
   }, [dispatch]);
 
   return (
-    <div>
-      <Cart />
-      <ItemList />
-      <ItemTypeToggle />
-      <Sorting />
-      <Brands />
-      <Tags />
-      <Pagination />
-    </div>
+    <MainContainer>
+
+      <LeftSideContainer id="sol">
+        <Sorting />
+        <Brands />
+        <Tags />
+      </LeftSideContainer>
+
+      <MiddleContainer id="orta">
+        <ItemTypeToggle />
+        <ItemList />
+      </MiddleContainer>
+
+      <RightSideContainer id="sag">
+        <Cart />
+      </RightSideContainer>
+
+      {/*
+      <BottomContainer id="bottom">
+        <Pagination />
+      </BottomContainer>
+      */}
+
+    </MainContainer>
   );
 }
