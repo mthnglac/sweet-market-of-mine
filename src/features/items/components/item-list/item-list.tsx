@@ -4,7 +4,7 @@ import {
   incrementCartItemCount,
   reCalculateCartTotal,
 } from "../cart/cartSlice";
-import { setShowCart } from '../../../site/slices/siteSlice'
+import { setShowCart } from "../../../site/slices/siteSlice";
 import type { Item } from "../../types/items.types";
 import type { CartItem } from "../cart/cart.types";
 import { Container, ItemContainer } from "./item-list.styles";
@@ -28,7 +28,7 @@ export function ItemList() {
       if (foundCartItemIndex === -1) {
         dispatch(addItemToCart({ item, count }));
         dispatch(reCalculateCartTotal());
-        dispatch(setShowCart(true))
+        dispatch(setShowCart(true));
       } else {
         dispatch(incrementCartItemCount(cartItems[foundCartItemIndex]));
         dispatch(reCalculateCartTotal());
@@ -44,7 +44,7 @@ export function ItemList() {
         items.map((item: Item, index: number) => (
           <ItemContainer key={index}>
             <div className="image">
-              <div className="square-image"></div>
+              <img className="square-image" src="/cat.jpeg" alt="item" />
             </div>
             <div className="content">
               <p className="item-price">

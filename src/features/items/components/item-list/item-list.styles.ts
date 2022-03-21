@@ -40,9 +40,7 @@ const ItemContainer = styled.div`
       bottom: 0;
       right: 0;
       text-align: center;
-      margin: 10%;
-
-      background-color: #C4C4C4;
+      object-fit: fill;
     }
   }
 
