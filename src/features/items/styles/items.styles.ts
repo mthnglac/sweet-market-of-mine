@@ -8,18 +8,18 @@ const MainContainer = styled.div`
 const LeftSideContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 1%;
   flex: 1;
 `;
 const MiddleContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 1%;
   flex: 3;
 `;
 const RightSideContainer = styled.div`
   display: flex;
-  margin: 10px;
+  margin: 1%;
   flex: 1;
 `;
 const BottomContainer = styled.div`

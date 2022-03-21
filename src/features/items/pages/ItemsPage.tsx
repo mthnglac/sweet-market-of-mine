@@ -69,7 +69,9 @@ export function ItemsPage() {
       </MiddleContainer>
 
       <RightSideContainer id="sag">
+        {/*
         <Cart />
+        */}
       </RightSideContainer>
 
       {/*

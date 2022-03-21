@@ -2,7 +2,8 @@ import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
 import { addItemToCart, incrementCartItemCount } from "../cart/cartSlice";
 import type { Item } from "../../types/items.types";
 import type { CartItem } from "../cart/cart.types";
-import { Container } from './item-list.styles'
+import { Container, ItemContainer } from "./item-list.styles";
+import { Button } from "../../../../common/components";
 
 export function ItemList() {
   const items = useTypedSelector((state) => state.items.filteredValue);
@@ -28,12 +29,25 @@ export function ItemList() {
       {items &&
         !!items.length &&
         items.map((item: Item, index: number) => (
-          <div key={index}>
-            <div key={index}>{item.name}</div>
-            <button onClick={handleAddItemToCart({ item, count: 1 })}>
-              Add To Cart
-            </button>
-          </div>
+          <ItemContainer key={index}>
+            <div className="image">
+              <div className="square-image"></div>
+            </div>
+            <div className="content">
+              <p className="item-price">
+                <span className="currency">&#x20BA;</span>
+                {item.price}
+              </p>
+              <p className="item-name">{item.name}</p>
+              <Button
+                active={true}
+                onClick={handleAddItemToCart({ item, count: 1 })}
+                text="Add To Cart"
+                width={"100%"}
+                height={30}
+              />
+            </div>
+          </ItemContainer>
         ))}
     </Container>
   );

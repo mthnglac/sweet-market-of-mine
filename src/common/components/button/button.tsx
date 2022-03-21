@@ -7,7 +7,7 @@ export function Button({ text, active, onClick, width, height }: ButtonProps) {
     <Container
       onClick={onClick}
       style={{
-        backgroundColor: active ? theme.colors.blue : theme.colors.white,
+        backgroundColor: active ? theme.colors.blue : theme.colors.greyPurple,
         width: width ? width : "124px",
         height: height ? height : "22px",
         color: active ? theme.colors.white : theme.colors.blue

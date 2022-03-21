@@ -16,8 +16,8 @@ export function ItemTypeToggle() {
       <Title>Item Type</Title>
 
       <div style={{ display: "flex", alignItems: "center" }}>
-        <Button active={ typeToggle === "mug" } onClick={handleClick("mug")} text="Mug" width={61} height={30} />
-        <Button active={ typeToggle === "shirt" } onClick={handleClick("shirt")} text="Shirt" width={61} height={30} />
+        <Button active={ typeToggle === "mug" } onClick={handleClick("mug")} text="Mug" width={90} height={35} />
+        <Button active={ typeToggle === "shirt" } onClick={handleClick("shirt")} text="Shirt" width={90} height={35} />
       </div>
     </Container>
   );
