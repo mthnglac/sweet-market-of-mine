@@ -40,7 +40,7 @@ export function ItemList() {
       {itemsLoading ? (
         <Loading />
       ) : (
-        !!items?.length &&
+        items?.length &&
         items.map((item: Item, index: number) => (
           <ItemContainer key={index}>
             <div className="image">

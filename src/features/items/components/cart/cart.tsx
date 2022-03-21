@@ -33,7 +33,7 @@ export function Cart() {
   return (
     <Container>
       <Card>
-        {!!cartItems?.length &&
+        {cartItems?.length ? (
           cartItems.map((cartItem: CartItem, index: number) => (
             <div className="cart-item" key={index}>
               <div className="cart-item-details">
@@ -56,7 +56,10 @@ export function Cart() {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="no-content">Add items to cart.</div>
+        )}
         <div className="cart-total">&#x20BA;{cartTotal}</div>
       </Card>
     </Container>

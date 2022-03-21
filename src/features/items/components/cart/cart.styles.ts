@@ -69,6 +69,16 @@ const Container = styled.div`
     font-size: ${(props) => props.theme.fontSizes.responsive};
     color: ${(props) => props.theme.colors.blue};
   }
+
+  .no-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: center;
+    font-weight: ${(props) => props.theme.fontWeights.regular};
+    font-size: ${(props) => props.theme.fontSizes.responsive};
+    color: ${(props) => props.theme.colors.black700};
+  }
 `;
 
 export { Container };
