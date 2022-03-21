@@ -1,6 +1,7 @@
 import { useTypedSelector, useTypedDispatch } from "../../../../common/hooks";
 import { incrementPage, decrementPage } from "../../../site/slices/siteSlice";
 import { Container } from "./pagination.styles";
+import { Button } from "../../../../common/components";
 
 export function Pagination() {
   const dispatch = useTypedDispatch();
@@ -9,8 +10,12 @@ export function Pagination() {
     (state) => state.items.filteredValueTotalCount
   );
 
+  const calculatePageCount = (totalCount: number, limit: number) => {
+    return Math.floor(totalCount / limit);
+  };
+
   const handleIncrementPage = () => {
-    if (page < Math.floor(filteredValueTotalCount / limit)) {
+    if (page < calculatePageCount(filteredValueTotalCount, limit)) {
       dispatch(incrementPage());
     }
   };
@@ -22,9 +27,18 @@ export function Pagination() {
 
   return (
     <Container>
-      <h2>Pagination</h2>
-      <button onClick={handleDecrementPage}>prev page</button>
-      <button onClick={handleIncrementPage}>next page</button>
+      <Button
+        active={true}
+        height={30}
+        text="Prev"
+        onClick={handleDecrementPage}
+      />
+      <Button
+        active={true}
+        height={30}
+        text="Next"
+        onClick={handleIncrementPage}
+      />
     </Container>
   );
 }

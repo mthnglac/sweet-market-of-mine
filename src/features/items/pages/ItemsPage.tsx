@@ -6,7 +6,7 @@ import { Brands } from "../components/brands/brands";
 import { Tags } from "../components/tags/tags";
 import { ItemList } from "../components/item-list/item-list";
 import { ItemTypeToggle } from "../components/item-type-toggle/item-type-toggle";
-//import { Pagination } from "../components/pagination/pagination";
+import { Pagination } from "../components/pagination/pagination";
 import { Cart } from "../components/cart/cart";
 import {
   MainContainer,
@@ -67,6 +67,7 @@ export function ItemsPage() {
       <MiddleContainer id="orta">
         <ItemTypeToggle />
         <ItemList />
+        <Pagination />
       </MiddleContainer>
 
       <RightSideContainer id="sag">
