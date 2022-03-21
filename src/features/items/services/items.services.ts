@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from "axios";
 import type { Item, ItemsFetchPayload } from "../types/items.types";
 
-const API_URL = "http://localhost:8080/items";
+const API_URL = process.env.REACT_APP_API_URL
 
 export async function fetchItemsService(payload: ItemsFetchPayload): Promise<AxiosResponse<Item[]>> {
   const { page, sorting, ordering, limit, brands, tags, itemTypeToggle } = payload
-  const requestURL = new URL(API_URL)
+  const requestURL = new URL(`${API_URL}/items`)
 
   if (page) requestURL.searchParams.append("_page", page.toString());
   if (sorting) requestURL.searchParams.append("_sort", sorting);
@@ -19,5 +19,5 @@ export async function fetchItemsService(payload: ItemsFetchPayload): Promise<Axi
   }
   if (itemTypeToggle) requestURL.searchParams.append("itemType", itemTypeToggle.toString());
 
-  return axios.get(requestURL.toString())
+  return axios.get<Item[]>(requestURL.toString())
 }

@@ -25,11 +25,10 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently --kill-others \"react-scripts start\" \"npx json-server --watch ./db/index.js --no-cors --port 8080\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start-fake-server": "json-server --watch ./db/index.js --no-cors --port 8080"
+    "eject": "react-scripts eject"
   },
   "keywords": [
     "json-server"
@@ -51,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
   }
 }
