@@ -8,6 +8,7 @@ interface LayoutProps {
 const theme = {
   colors: {
     greyscale700: "#191919",
+    black100: "#E0E0E0",
     black300: "#A8A8A8",
     black600: "#525252",
     greyscale500: "#697488",

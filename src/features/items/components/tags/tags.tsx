@@ -3,7 +3,8 @@ import { setTags } from "../../../site/slices/siteSlice";
 import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
 import { pushSelection, removeSelection, resetSelections } from "./tagsSlice";
 import type { Item } from "../../types/items.types";
-import { Container } from "./tags.styles"
+import { Card, CheckBox, SearchBar } from "../../../../common/components";
+import { Container, Title } from "./tags.styles"
 import _ from "lodash";
 
 export function Tags() {
@@ -20,18 +21,7 @@ export function Tags() {
   const flattedTags = tags.flat();
   const tagsByUsageCount = _.countBy(flattedTags);
 
-  const searchBar = () => {
-    return (
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <input
-          placeholder="Search tag"
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
-    );
-  };
-
-  const handleCheckboxChange = (tag: string) => {
+  const handleCheckboxChange = (tag: string) => () => {
     const foundTag = selections.indexOf(tag);
 
     if (foundTag === -1) {
@@ -43,36 +33,29 @@ export function Tags() {
 
   const checkboxItems = () => {
     return (
-      <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', backgroundColor: 'red',}}>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <input
-            type="checkbox"
-            checked={!selections.length}
-            onChange={() => {
-              if (selections.length) {
-                dispatch(resetSelections());
-              }
-            }}
-          ></input>
-          <p style={{ margin: 0 }}>
-            All <span>{flattedTags.length}</span>
-          </p>
-        </div>
+      <div style={{ width: '100%', height: '142px', overflowY: 'scroll' }}>
+        <CheckBox
+          label="All"
+          helperLabel={flattedTags.length.toString()}
+          checked={!selections.length}
+          onChange={() => {
+            if (selections.length) {
+              dispatch(resetSelections());
+            }
+          }}
+        />
         {Object.entries(tagsByUsageCount)
           .filter(([tag, usage]: [tag: string, usage: number]) =>
             tag.toLowerCase().includes(searchQuery.toLowerCase())
           )
           .map(([tag, usage]: [tag: string, usage: number], index: number) => (
-            <div key={index} style={{ display: "flex", alignItems: "center" }}>
-              <input
-                type="checkbox"
-                checked={selections.includes(tag)}
-                onChange={() => handleCheckboxChange(tag)}
-              ></input>
-              <p style={{ margin: 0 }}>
-                {tag} <span>{usage}</span>
-              </p>
-            </div>
+            <CheckBox
+              key={index}
+              label={tag}
+              helperLabel={usage.toString()}
+              checked={selections.includes(tag)}
+              onChange={handleCheckboxChange(tag)}
+            />
           ))}
       </div>
     );
@@ -80,8 +63,12 @@ export function Tags() {
 
   return (
     <Container>
-      {searchBar()}
-      {checkboxItems()}
+      <Title>Tags</Title>
+
+      <Card>
+        <SearchBar placeholder="Search tag" onChange={(e) => setSearchQuery(e.target.value)} />
+        {checkboxItems()}
+      </Card>
     </Container>
   );
 }

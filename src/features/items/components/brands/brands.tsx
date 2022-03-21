@@ -4,6 +4,8 @@ import { useTypedSelector, useTypedDispatch } from "../../../../hooks";
 import { pushSelection, removeSelection, resetSelections } from "./brandsSlice";
 import type { Item } from "../../types/items.types";
 import _ from "lodash";
+import { Card, CheckBox, SearchBar } from "../../../../common/components";
+import { Container, Title } from "./brands.styles";
 
 export function Brands() {
   const selections = useTypedSelector((state) => state.brands.selections);
@@ -18,18 +20,7 @@ export function Brands() {
   const manufacturers: string[] = items.map((item: Item) => item.manufacturer);
   const manufacturersByUsageCount = _.countBy(manufacturers);
 
-  const searchBar = () => {
-    return (
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <input
-          placeholder="Search brand"
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-      </div>
-    );
-  };
-
-  const handleCheckboxChange = (manufacturer: string) => {
+  const handleCheckboxChange = (manufacturer: string) => () => {
     const foundManufacturer = selections.indexOf(manufacturer);
 
     if (foundManufacturer === -1) {
@@ -41,21 +32,17 @@ export function Brands() {
 
   const checkboxItems = () => {
     return (
-      <div>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <input
-            type="checkbox"
-            checked={!selections.length}
-            onChange={() => {
-              if (selections.length) {
-                dispatch(resetSelections());
-              }
-            }}
-          ></input>
-          <p style={{ margin: 0 }}>
-            All <span>{manufacturers.length}</span>
-          </p>
-        </div>
+      <div style={{ width: '100%', height: '142px', overflowY: 'scroll' }}>
+        <CheckBox
+          label="All"
+          helperLabel={manufacturers.length.toString()}
+          checked={!selections.length}
+          onChange={() => {
+            if (selections.length) {
+              dispatch(resetSelections());
+            }
+          }}
+        />
         {Object.entries(manufacturersByUsageCount)
           .filter(
             ([manufacturer, usage]: [manufacturer: string, usage: number]) =>
@@ -66,19 +53,13 @@ export function Brands() {
               [manufacturer, usage]: [manufacturer: string, usage: number],
               index: number
             ) => (
-              <div
+              <CheckBox
                 key={index}
-                style={{ display: "flex", alignItems: "center" }}
-              >
-                <input
-                  type="checkbox"
-                  checked={selections.includes(manufacturer)}
-                  onChange={() => handleCheckboxChange(manufacturer)}
-                ></input>
-                <p style={{ margin: 0 }}>
-                  {manufacturer} <span>{usage}</span>
-                </p>
-              </div>
+                label={manufacturer}
+                helperLabel={usage.toString()}
+                checked={selections.includes(manufacturer)}
+                onChange={handleCheckboxChange(manufacturer)}
+              />
             )
           )}
       </div>
@@ -86,9 +67,13 @@ export function Brands() {
   };
 
   return (
-    <div>
-      {searchBar()}
-      {checkboxItems()}
-    </div>
+    <Container>
+      <Title>Brands</Title>
+
+      <Card>
+        <SearchBar placeholder="Search brand" onChange={(e) => setSearchQuery(e.target.value)} />
+        {checkboxItems()}
+      </Card>
+    </Container>
   );
 }
