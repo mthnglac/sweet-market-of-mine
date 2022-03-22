@@ -25,12 +25,12 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "concurrently --kill-others \"react-scripts start\" \"npx json-server --watch ./db/index.js --no-cors --port 8080\"",
-    "start-concurrently": "concurrently --kill-others \"react-scripts start\" \"npx json-server --watch ./db/index.js --no-cors --port 8080\"",
+    "start": "react-scripts start",
+    "start-concurrently": "concurrently --kill-others \"react-scripts start\" \"npx json-server --watch ./db/db.json --no-cors --port 8080\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-fake-server": "json-server --watch ./db/index.js --no-cors --port 8080"
+    "start-fake-server": "json-server --watch ./db/db.json --no-cors --port 8080"
   },
   "keywords": [
     "json-server"
