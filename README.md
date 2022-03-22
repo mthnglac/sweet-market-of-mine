@@ -1,6 +1,6 @@
 # Sweet Market App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Demo](http://sweet-market-of-mine.vercel.app/).
 
 ## Description
 
