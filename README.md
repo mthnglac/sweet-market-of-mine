@@ -27,6 +27,7 @@ The application contains the following features:
   - Show total of cart items
 * Pagination
   - Next/Previous page buttons
+* 3 second throttling on every request to the server. It just using sleep logic for demonstrate.
 
 ## Available Scripts
 
